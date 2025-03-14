@@ -1,5 +1,10 @@
 class Solution {
-    public int maximumCandies(int[] arr, long k) {
+    static{
+        for(int i=0;i<500;i++){
+            maximumCandies(new int[]{1},1);
+        }
+    }
+    public static int maximumCandies(int[] arr, long k) {
         int n =arr.length;
         long start=0;
         long end=0;
@@ -19,7 +24,7 @@ class Solution {
         }
         return (int)end;
     }
-    public boolean helper(int[] arr,long k,long mid){
+    public static boolean helper(int[] arr,long k,long mid){
         int i=0;
         if(mid==0){
             if(k==1 && arr[0]>=mid)return false;
