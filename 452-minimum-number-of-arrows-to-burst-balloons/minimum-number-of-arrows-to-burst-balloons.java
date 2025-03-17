@@ -10,13 +10,12 @@ class Solution {
             if(a[0]<b[0])return -1;
             return 1;
         });
-        int start=0;
         int count=0;
         int end=arr[0][1];
         for(int i=1;i<n;i++){
             if(end<arr[i][0]){
                 count++;
-                start=i;
+                //start=i;
                 end=arr[i][1];
             }
             end=Math.min(end,arr[i][1]);
