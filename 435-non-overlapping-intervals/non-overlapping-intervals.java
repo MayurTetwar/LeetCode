@@ -1,9 +1,9 @@
 class Solution {
     public int eraseOverlapIntervals(int[][] arr) {
         Arrays.sort(arr,(a,b)->a[0]-b[0]);
-        for(int i=0;i<arr.length;i++){
-            System.out.print(Arrays.toString(arr[i]));
-        }
+        // for(int i=0;i<arr.length;i++){
+        //     System.out.print(Arrays.toString(arr[i]));
+        // }
         int n=arr.length;
         int end=arr[0][1];
         int count=0;
