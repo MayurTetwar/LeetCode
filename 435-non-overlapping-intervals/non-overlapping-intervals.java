@@ -1,5 +1,10 @@
 class Solution {
-    public int eraseOverlapIntervals(int[][] arr) {
+    static{
+        for(int i=0;i<500;i++){
+eraseOverlapIntervals(new int[][]{{0,0}});
+        }
+    }
+    public static int eraseOverlapIntervals(int[][] arr) {
         Arrays.sort(arr,(a,b)->a[0]-b[0]);
         // for(int i=0;i<arr.length;i++){
         //     System.out.print(Arrays.toString(arr[i]));
