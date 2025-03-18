@@ -49,7 +49,7 @@ class Solution {
                 j++;
                 k++;
             }
-            System.out.println(Arrays.toString(sortA));
+            //System.out.println(Arrays.toString(sortA));
             Arrays.sort(sortA);
             j=n-i-1;k=0;
             while(j<n && k<m){
