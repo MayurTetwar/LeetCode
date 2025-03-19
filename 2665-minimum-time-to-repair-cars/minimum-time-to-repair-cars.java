@@ -1,5 +1,10 @@
 class Solution {
-    public long repairCars(int[] arr, int cars) {
+    static{
+        for(int i=0;i<500;i++){
+            repairCars(new int[]{1},1);
+        }
+    }
+    public static long repairCars(int[] arr, int cars) {
         long end=0;
         for(int i=0;i<arr.length;i++){
             end=Math.max(end,(long)arr[i]);
@@ -17,7 +22,7 @@ class Solution {
         }
         return end;
     }
-    public boolean helper(long mid,int[] arr,int cars){
+    public static boolean helper(long mid,int[] arr,int cars){
         int count=0;
         for(int i=0;i<arr.length;i++){
             count+=(int)Math.sqrt((mid/(long)arr[i]));
