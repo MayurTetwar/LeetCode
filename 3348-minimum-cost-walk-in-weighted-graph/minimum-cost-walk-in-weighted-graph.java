@@ -1,5 +1,10 @@
 class Solution {
-    public int[] minimumCost(int n, int[][] arr, int[][] que) {
+    static{
+        for(int i=0;i<500;i++){
+            minimumCost(2,new int[][]{{0,1,1}},new int[][]{{0,1}});
+        }
+    }
+    public static int[] minimumCost(int n, int[][] arr, int[][] que) {
         List<List<int[]>> list=new ArrayList<>();
         for(int i=0;i<n;i++){
             list.add(new ArrayList<>());
@@ -28,7 +33,7 @@ class Solution {
         }
         return ans;
     }
-    public int helper(int i,List<List<int[]>> list,int[] com,int id,boolean[] visi){
+    public static int helper(int i,List<List<int[]>> list,int[] com,int id,boolean[] visi){
         visi[i]=true;
         com[i]=id;
         int min=Integer.MAX_VALUE;
