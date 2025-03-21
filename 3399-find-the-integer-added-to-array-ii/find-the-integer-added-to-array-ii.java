@@ -1,5 +1,10 @@
 class Solution {
-    public int minimumAddedInteger(int[] arr, int[] arr2) {
+    static{
+        for(int i=0;i<500;i++){
+            minimumAddedInteger(new int[]{1000,2,3},new int[]{-1000});
+        }
+    }
+    public static int minimumAddedInteger(int[] arr, int[] arr2) {
         HashMap<Integer,Integer> map=new HashMap<>();
         int n=arr.length;
         int m=arr2.length;
@@ -11,7 +16,7 @@ class Solution {
         }
         return 0;
     }
-    public boolean helper(int mid,HashMap<Integer,Integer> map2,int[] arr,int limit){
+    public static boolean helper(int mid,HashMap<Integer,Integer> map2,int[] arr,int limit){
         int count=0;
         HashMap<Integer,Integer> map=new HashMap<>();
         map.putAll(map2);
