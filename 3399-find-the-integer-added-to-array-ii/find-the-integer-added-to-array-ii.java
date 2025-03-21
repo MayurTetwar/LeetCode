@@ -1,29 +1,30 @@
 class Solution {
-    static{
-        for(int i=0;i<500;i++){
-            minimumAddedInteger(new int[]{1000,2,3},new int[]{-1000});
-        }
-    }
-    public static int minimumAddedInteger(int[] arr, int[] arr2) {
-        HashMap<Integer,Integer> map=new HashMap<>();
+    public int minimumAddedInteger(int[] arr, int[] arr2) {
+        int[] map=new int[3002];
         int n=arr.length;
         int m=arr2.length;
+        // int min=20000;
+        // int max=-20000;
         for(int i=0;i<m;i++){
-            map.put(arr2[i],map.getOrDefault(arr2[i],0)+1);
+            map[arr2[i]+1000]++;
+           // min=Math.min(min,arr2[i]);
         }
+        // for(int i=0;i<n;i++){
+        //     max=Math.max(max,arr[i]);
+        // }
+       // int limit=Math.max(max-min,min+max);
+        //System.out.println(limit);
         for(int i=-1000;i<1000;i++){
-            if(helper(i,map,arr,m))return i;
+            if(helper(i,map.clone(),arr,m))return i;
         }
         return 0;
     }
-    public static boolean helper(int mid,HashMap<Integer,Integer> map2,int[] arr,int limit){
+    public boolean helper(int mid,int[] map,int[] arr,int limit){
         int count=0;
-        HashMap<Integer,Integer> map=new HashMap<>();
-        map.putAll(map2);
         for(int i=0;i<arr.length;i++){
-            if(map.containsKey(arr[i]+mid) && map.get(arr[i]+mid)>0){
+            if(map[arr[i]+mid+1000]>0){
                 count++;
-                map.put(arr[i]+mid,map.get(arr[i]+mid)-1);
+                map[arr[i]+mid+1000]--;
             }
         }
         if(count==limit)return true;
