@@ -3,18 +3,24 @@ class Solution {
         int[] map=new int[3002];
         int n=arr.length;
         int m=arr2.length;
-        // int min=20000;
-        // int max=-20000;
+        int min1=20000;
+        int max1=-20000;
+        int min2=20000;
+        int max2=-20000;
         for(int i=0;i<m;i++){
             map[arr2[i]+1000]++;
-           // min=Math.min(min,arr2[i]);
+            min1=Math.min(min1,arr2[i]);
+            max1=Math.max(max1,arr2[i]);
         }
-        // for(int i=0;i<n;i++){
-        //     max=Math.max(max,arr[i]);
-        // }
-       // int limit=Math.max(max-min,min+max);
+        for(int i=0;i<n;i++){
+            max2=Math.max(max2,arr[i]);
+            min2=Math.min(min2,arr[i]);
+        }
+        min1=Math.min(min1,min2);
+        max1=Math.max(max1,max2);
+        int limit=Math.max(min1-max1,max1-min1);
         //System.out.println(limit);
-        for(int i=-1000;i<1000;i++){
+        for(int i=-limit;i<=limit;i++){
             if(helper(i,map.clone(),arr,m))return i;
         }
         return 0;
