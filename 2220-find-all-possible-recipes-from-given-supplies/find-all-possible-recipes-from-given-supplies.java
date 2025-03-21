@@ -1,5 +1,5 @@
 class Solution {
-    public List<String> findAllRecipes(String[] arr, List<List<String>> list, String[] sup) {
+    public  List<String> findAllRecipes(String[] arr, List<List<String>> list, String[] sup) {
         HashSet<String> set=new HashSet<>();
         for(String str:sup){
             set.add(str);
