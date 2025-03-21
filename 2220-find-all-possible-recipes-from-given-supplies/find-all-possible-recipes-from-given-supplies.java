@@ -10,8 +10,9 @@ class Solution {
         boolean[] visi=new boolean[n];
         int save=-1;
         int k=0;
+        int []a=new int[n];
         int all=0;
-        while(k<n && all<10000){
+        while(k<n && a[count]<n){
             if(save==count)break;
             if(!visi[count]){
                 List<String> res=list.get(count);
@@ -29,7 +30,7 @@ class Solution {
             }
             count++;
             count=count%n;
-            all++;
+            a[count]++;
         }
         return ans;
     }
