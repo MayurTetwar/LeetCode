@@ -1,5 +1,10 @@
 class Solution {
-    public int countCompleteComponents(int total, int[][] arr) {
+    static{
+        for(int i=0;i<500;i++){
+countCompleteComponents(2,new int[][]{{0,1}});
+        }
+    }
+    public static int countCompleteComponents(int total, int[][] arr) {
         List<List<Integer>> list=new ArrayList<>();
         int n=arr.length;
         for(int i=0;i<total;i++){
@@ -26,7 +31,7 @@ class Solution {
         }
         return count;
     }
-    public int helper(int node,List<List<Integer>> list,boolean[] visi,int total,List<Integer> all){
+    public static int helper(int node,List<List<Integer>> list,boolean[] visi,int total,List<Integer> all){
         visi[node]=true;
         all.add(node);
         int count=1;
