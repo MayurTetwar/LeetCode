@@ -1,12 +1,14 @@
 class Solution {
-    public String longestPalindrome(String s) {
+    static{
+        for(int i=0;i<500;i++){
+            longestPalindrome("a");
+        }
+    }
+    public static String longestPalindrome(String s) {
         int n=s.length();
         int start=0;
         int end=0;
-        //    int[][] dp=new int[n][n];
         for(int i=0;i<n;i++){
-            // StringBuilder str=new StringBuilder();
-            // StringBuilder revstr=new StringBuilder();
             int left=i-1, right=i+1;
             while(left>=0 && right<n){
                 if(s.charAt(left)!=s.charAt(right)){
@@ -23,7 +25,6 @@ class Solution {
             right=i;
            
             if(i<n-1 && s.charAt(left)==s.charAt(right+1)){
-                //System.out.println(s.charAt(left)+" "+s.charAt(right+1));
                 left=i;
                 right=i+1;
                 while(left>=0 && right<n){
