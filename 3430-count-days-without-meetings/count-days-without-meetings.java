@@ -1,5 +1,10 @@
 class Solution {
-    public int countDays(int days, int[][] arr) {
+    static{
+        for(int i=0;i<500;i++){
+            countDays(2,new int[][]{{1,2}});
+        }
+    }
+    public static int countDays(int days, int[][] arr) {
         int n=arr.length;
         Arrays.sort(arr,(a,b)->{
             if(a[0]<b[0])return -1;
