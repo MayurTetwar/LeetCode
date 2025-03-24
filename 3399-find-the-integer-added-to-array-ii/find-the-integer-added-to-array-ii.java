@@ -40,6 +40,7 @@ class Solution {
                 count++;
                 map[arr[i] + mid + 1000]--;
             }
+            if(count>limit)return false;
         }
         if (count == limit)
             return true;
