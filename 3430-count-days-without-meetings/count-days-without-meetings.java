@@ -8,23 +8,17 @@ class Solution {
             }
             return 1;
         });
-        List<int[]> list=new ArrayList<>();
         int start=0;
         int end=0;
+        int ans=days;
         for(int i=1;i<n;i++){
-          //  System.out.println(arr[i][0]+" "+arr[i][1]);
             if(arr[end][1]<arr[i][0]){
-                list.add(new int[]{arr[start][0],arr[end][1]});
+                ans-=(arr[end][1]-arr[start][0])+1;
                 start=i;
             }
             end=(arr[end][1]>arr[i][1])?end:i;
         }
-        list.add(new int[]{arr[start][0],arr[end][1]});
-        int ans=days;
-        for(int a[]:list){
-         //   System.out.println(ans+" "+a[1]+" "+a[0]);
-            ans-=(a[1]-a[0])+1;
-        }
+        ans-=(arr[end][1]-arr[start][0])+1;
         return ans;
     }
 }
