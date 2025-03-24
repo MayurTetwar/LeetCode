@@ -1,9 +1,9 @@
 class Solution {
-    // static{
-    //     for(int i=0;i<500;i++){
-    //         beautySum("a");
-    //     }
-    // }
+    static{
+        for(int i=0;i<500;i++){
+            beautySum("a");
+        }
+    }
     public static int beautySum(String s) {
         int count=0;
         int n=s.length();
