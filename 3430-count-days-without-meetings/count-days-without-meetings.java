@@ -1,18 +1,7 @@
 class Solution {
-    static{
-        for(int i=0;i<500;i++){
-            countDays(2,new int[][]{{1,2}});
-        }
-    }
     public static int countDays(int days, int[][] arr) {
         int n=arr.length;
-        Arrays.sort(arr,(a,b)->{
-            if(a[0]<b[0])return -1;
-            if(a[0]==b[0]){
-                return a[1]-b[1];
-            }
-            return 1;
-        });
+        Arrays.sort(arr,(a,b)->a[0]-b[0]);
         int start=0;
         int end=0;
         int ans=days;
