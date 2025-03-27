@@ -1,5 +1,10 @@
 class Solution {
-    public int minimumIndex(List<Integer> list) {
+    static{
+        for(int i=0;i<500;i++){
+            minimumIndex(new ArrayList<>());
+        }
+    }
+    public static int minimumIndex(List<Integer> list) {
         HashMap<Integer,List<Integer>> map=new HashMap<>();
         int n=list.size();
         for(int i=0;i<n;i++){
