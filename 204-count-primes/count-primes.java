@@ -1,9 +1,9 @@
 class Solution {
     static int[] ans;
     static boolean flag;
-    public static void helper(){
-        if(flag)return;
-        flag=true;
+    static{
+        // if(flag)return;
+        // flag=true;
         ans=new int[5000001];
         boolean[] arr=new boolean[5000001];
         ans[3]=1;
@@ -24,7 +24,7 @@ class Solution {
     }    
     public static int countPrimes(int n) { 
         if(n<=2)return 0;   
-        helper();
+        //helper();
         return ans[n-1];
     }
 }
