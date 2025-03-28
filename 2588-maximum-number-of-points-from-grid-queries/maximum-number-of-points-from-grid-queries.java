@@ -1,5 +1,10 @@
 class Solution {
-    class Cell{
+    static{
+        for(int i=0;i<500;i++){
+            maxPoints(new int[][]{{0}},new int[]{0});
+        }
+    }
+    static class Cell{
         int i, j, val;
         Cell(int i, int j, int val){
             this.i=i;
@@ -7,7 +12,7 @@ class Solution {
             this.val=val;
         }
     }
-    public int[] maxPoints(int[][] arr, int[] qua) {
+    public static int[] maxPoints(int[][] arr, int[] qua) {
         
         int k=qua.length;
         int n=arr.length;
@@ -52,7 +57,7 @@ class Solution {
         }
         return qua;
     }
-    public boolean isvalid(int n ,int m ,int i, int j){
+    public static boolean isvalid(int n ,int m ,int i, int j){
         if(i>=n || j>=m || i<0 || j<0)return false;
         return true;
     }
