@@ -25,13 +25,13 @@ class Solution {
                 while(!stk.isEmpty() && dp[stk.peek()]>=dp[j]){
                     stk.pop();
                 }
-                if(stk.size()>0)right[j]=stk.peek();
-                else right[j]=m;
+                if(stk.size()>0) ans=Math.max(ans,(stk.peek()-left[j]-1)*(dp[j]-1));
+                else ans=Math.max(ans,(m-left[j]-1)*(dp[j]-1));
                 stk.push(j);
             }
-            for(int j=0;j<m;j++){
-                ans=Math.max(ans,(right[j]-left[j]-1)*(dp[j]-1));
-            }
+            // for(int j=0;j<m;j++){
+            //     ans=Math.max(ans,(right[j]-left[j]-1)*(dp[j]-1));
+            // }
         }
         return ans;
     }
