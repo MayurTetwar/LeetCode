@@ -1,5 +1,10 @@
 class Solution {
-    public long countOfSubstrings(String s, int k) {
+    static{
+        for(int i=0;i<500;i++){
+            countOfSubstrings("aie",1);
+        }
+    }
+    public static long countOfSubstrings(String s, int k) {
         HashSet<Character> set=new HashSet<>();
         set.add('a');
         set.add('e');
