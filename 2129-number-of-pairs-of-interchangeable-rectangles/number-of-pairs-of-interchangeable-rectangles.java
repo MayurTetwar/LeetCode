@@ -7,7 +7,7 @@ class Solution {
             map.put(num,map.getOrDefault(num,0L)+1);
         }
         long ans=0;
-        System.out.println(map);
+       // System.out.println(map);
         for(Double num:map.keySet()){
             long val=map.get(num);
             ans+=(val*(val-1))/2;
