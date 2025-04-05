@@ -1,16 +1,11 @@
 class Solution {
-    int ans;
     public int subsetXORSum(int[] arr) {
-        ans=0;
-        helper(arr,0,0);
-        return ans;
+        return helper(arr,0,0);
     }
-    public void helper(int[] arr,int curr,int idx){
+    public int helper(int[] arr,int curr,int idx){
         if(idx==arr.length){
-            ans+=curr;
-            return;
+            return curr;
         }
-        helper(arr,curr,idx+1);
-        helper(arr,curr^arr[idx],idx+1);
+        return helper(arr,curr,idx+1)+helper(arr,curr^arr[idx],idx+1);
     }
 }
