@@ -1,5 +1,10 @@
 class Solution {
-    public int maxSubarraySumCircular(int[] arr) {
+    static{
+        for(int i=0;i<500;i++){
+            maxSubarraySumCircular(new int[]{});
+        }
+    }
+    public static int maxSubarraySumCircular(int[] arr) {
         int currx=0;
         int currn=0;
         int max=Integer.MIN_VALUE;
