@@ -9,13 +9,13 @@ class Solution {
         }
         long ans=0;
         HashMap<Long,Integer> map=new HashMap<>();
-        System.out.println(Arrays.toString(dp));
+        // System.out.println(Arrays.toString(dp));
         map.put(0L,1);
         for(int i=0;i<n;i++){
             ans += map.getOrDefault((dp[i] - k + mod) % mod, 0);
             map.put(dp[i]%mod,map.getOrDefault(dp[i]%mod,0)+1);
         }
-        System.out.println(map);
+        // System.out.println(map);
         return ans;
     }
 }
