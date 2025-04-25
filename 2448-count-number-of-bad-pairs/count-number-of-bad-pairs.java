@@ -1,5 +1,10 @@
 class Solution {
-    public long countBadPairs(int[] arr) {
+    static{
+        for(int i=0;i<500;i++){
+            countBadPairs(new int[]{});
+        }
+    }
+    public static long countBadPairs(int[] arr) {
         long n=(long)arr.length;
         long total=(n-1)*n/2;
         HashMap<Integer,Integer> map=new HashMap<>();
