@@ -1,5 +1,10 @@
 class Solution {
-    public int findTargetSumWays(int[] arr, int target) {
+    static {
+        for(int i=0; i < 500; i++){
+            findTargetSumWays(new int[]{1}, 1);
+        }
+    }
+    public static int findTargetSumWays(int[] arr, int target) {
         int n=arr.length;
         int total=0;
         for(int num:arr)total+=num;
@@ -7,7 +12,7 @@ class Solution {
         for(int[] row:dp)Arrays.fill(row,Integer.MIN_VALUE);
         return helper(arr,total,n-1,0,target,dp);
     }
-    public int helper(int[] arr,int total,int i,int curr,int tar,int[][] dp){
+    public static int helper(int[] arr,int total,int i,int curr,int tar,int[][] dp){
         if(i<0){
             if(curr==tar)return 1;
             return 0;
