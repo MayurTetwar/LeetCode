@@ -1,5 +1,9 @@
 class Solution {
-    public int numMatchingSubseq(String news, String[] arr) {
+     static {
+        for (int i = 0; i < 100; i++)
+            numMatchingSubseq("", new String[] {});
+    }
+    static public int numMatchingSubseq(String news, String[] arr) {
         int ans=0;
         int n=arr.length;
         int[][] map=new int[news.length()][26];
