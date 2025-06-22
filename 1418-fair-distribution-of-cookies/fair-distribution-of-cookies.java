@@ -15,6 +15,7 @@ class Solution {
             arrk[i]+=arr[j];
             helper(arr,arrk,j+1,Math.max(max,arrk[i]));
             arrk[i]-=arr[j];
+            if(arrk[i] == 0)   break; 
         }
     }
 }
