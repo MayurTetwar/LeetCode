@@ -12,7 +12,7 @@ class Solution {
     }
     public boolean helper(int[] arr,int k,int[] res){
         int i=0,j=1;
-        System.out.println(k);
+    //    System.out.println(k);
         int n=arr.length;
         int ind=0;
         boolean[] visi=new boolean[n];
