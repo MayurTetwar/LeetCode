@@ -1,13 +1,18 @@
 class Solution {
-    int[][] memo;
-    public int longestSubsequence(String s, int k) {
+    static int[][] memo;
+    static{
+        for(int i=0;i<500;i++){
+            longestSubsequence("0",1);
+        }
+    }
+    public static int longestSubsequence(String s, int k) {
         memo=new int[s.length()][s.length()];
         for(int i=0;i<s.length();i++){
             Arrays.fill(memo[i],-1);
         }
         return helper(s,k,s.length()-1,0);
     }
-    public int helper(String s,int k,int i,int pos){
+    public static int helper(String s,int k,int i,int pos){
         if(i<0)return 0;
         if(memo[i][pos]!=-1)return memo[i][pos];
         int nottake=helper(s,k,i-1,pos);
