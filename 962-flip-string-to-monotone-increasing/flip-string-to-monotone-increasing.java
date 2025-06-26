@@ -13,22 +13,11 @@ class Solution {
             return 0;
         }
         if(memo[i][(flag)?1:0]!=-1)return memo[i][(flag)?1:0];
+        int ch=s.charAt(i)-'0';
         if(flag){
-            if(s.charAt(i)=='0'){
-                return memo[i][(flag)?1:0]=1+helper(s,i+1,true);
-            }else{
-                return memo[i][(flag)?1:0]=helper(s,i+1,true);
-            }
+            return memo[i][(flag)?1:0]=(1-ch)+helper(s,i+1,true);
         }else{
-            if(s.charAt(i)=='1'){
-                int val=helper(s,i+1,true);
-                int val2=1+helper(s,i+1,false);
-                return memo[i][(flag)?1:0]=Math.min(val,val2);
-            }else{
-                int val=helper(s,i+1,false);
-                int val2=1+helper(s,i+1,true);
-                return memo[i][(flag)?1:0]=Math.min(val,val2);
-            }
+            return memo[i][(flag)?1:0]=Math.min((1-ch)+helper(s,i+1,true),ch+helper(s,i+1,false));
         }
     }
 }
