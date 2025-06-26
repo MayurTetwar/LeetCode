@@ -15,12 +15,11 @@ class Solution {
             if(minProfit<=0 && n>=0)return 1;
             return 0;
         }
-        if(n<0){
-            return 0;
-        }
         if(memo[n][minProfit][i]!=-1)return memo[n][minProfit][i];
         int nottake=helper(n,minProfit,group,arr,i+1);
-        int take=helper(n-group[i],Math.max(minProfit-arr[i],0),group,arr,i+1);
+        int take=0;
+        if(n>=group[i])
+            take=helper(n-group[i],Math.max(minProfit-arr[i],0),group,arr,i+1);
         return memo[n][minProfit][i]=(nottake%mod+take%mod)%mod;
     }
 }
