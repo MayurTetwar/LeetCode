@@ -1,16 +1,11 @@
--- Write your PostgreSQL query statement below
-select d.name as Department , 
+select 
+d.name as Department ,
 e.name as Employee,
-e.salary as salary
-from
-Employee e join Department d
-on e.departmentId=d.id
-where salary in (
-    -- select (
-        select DISTINCT salary 
-        from Employee e1
-        where e1.departmentId = e.departmentId
-        order by salary desc
-        limit 3
-    -- ) ;
-)
+e.salary as salary 
+from (
+    select *,
+    dense_rank() over(partition by departmentId order by salary desc) as rnk
+    from Employee
+) e join Department d 
+on e.departmentid = d.id
+where rnk<=3;
