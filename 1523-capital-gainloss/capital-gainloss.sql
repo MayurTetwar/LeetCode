@@ -1,10 +1,9 @@
 -- Write your PostgreSQL query statement below
-select stock_name,
+select distinct stock_name,
 sum(
     case
         when operation='Sell' then price
-        else -1*price
+        else -price
     end
-) as capital_gain_loss
-from Stocks 
-group by stock_name    
+) over (partition by stock_name) as capital_gain_loss 
+from Stocks
