@@ -1,12 +1,9 @@
 -- Write your PostgreSQL query statement below
 select stock_name,
 sum(
-    case 
-        when operation='Sell' then price 
-    end
-)-sum(
-    case 
-        when operation='Buy' then price 
+    case
+        when operation='Sell' then price
+        else -1*price
     end
 ) as capital_gain_loss
 from Stocks 
