@@ -1,11 +1,8 @@
 -- Write your PostgreSQL query statement below
 
 select u.user_id as buyer_id ,u.join_date,
-sum(
-    case
-        when TO_CHAR(o.order_date ,'YYYY')='2019' then 1
-        else 0
-    end
+count(
+    CASE WHEN o.order_date BETWEEN '2019-01-01' AND '2019-12-31' THEN 1 END
 ) as orders_in_2019 
 from
 Users u left join Orders o
