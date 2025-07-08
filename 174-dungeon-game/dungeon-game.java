@@ -24,9 +24,4 @@ class Solution {
             return dp[i+ik][j+jk]-arr[i][j];
         return 1;
     }
-    /*
-    7   5   2
-        15  5
-        6   6
-    */
 }
