@@ -20,18 +20,9 @@ class Solution {
         return dp[0][0];
     }
     public int helper(int[][] arr,int[][] dp,int i,int j,int ik,int jk){
-        int val=0;
-        if(arr[i][j]<0){
-            val=-arr[i][j]+dp[i+ik][j+jk];
-        //val=Math.min(val,1-arr[i][j]);
-        }else{
-            if(arr[i][j]<dp[i+ik][j+jk]){
-                val=dp[i+ik][j+jk]-arr[i][j];
-            }else{
-                val=1;
-            }
-        }
-        return val;
+        if(arr[i][j]<dp[i+ik][j+jk])
+            return dp[i+ik][j+jk]-arr[i][j];
+        return 1;
     }
     /*
     7   5   2
