@@ -13,29 +13,17 @@ class Solution {
         PriorityQueue<Integer> pqr=new PriorityQueue<>();
         for(int i=0;i<n;i++)pqr.add(i);
         for(int i=0;i<m;i++){
-            if(pq.size()==0){
+            while(pq.size()>0 && pq.peek()[1]<=arr[i][0]){
+                pqr.add(pq.poll()[2]);
+            }
+            if(pqr.size()==0){
+                int[] fin=pq.poll();
+                count[fin[2]]++;
+                pq.add(new int[]{fin[1],arr[i][1]+fin[1]-arr[i][0],fin[2]});
+            }else{
                 int roomNo=pqr.poll();
                 count[roomNo]++;
                 pq.add(new int[]{arr[i][0],arr[i][1],roomNo});
-            }else{
-                if(pq.peek()[1]>arr[i][0]){
-                    if(pqr.size()==0){
-                        int[] fin=pq.poll();
-                        count[fin[2]]++;
-                        pq.add(new int[]{fin[1],arr[i][1]+fin[1]-arr[i][0],fin[2]});
-                    }else{
-                        int roomNo=pqr.poll();
-                        count[roomNo]++;
-                        pq.add(new int[]{arr[i][0],arr[i][1],roomNo});
-                    }
-                }else{
-                    while(pq.size()>0 && pq.peek()[1]<=arr[i][0]){
-                        pqr.add(pq.poll()[2]);
-                    }
-                    int roomNo=pqr.poll();
-                    count[roomNo]++;
-                    pq.add(new int[]{arr[i][0],arr[i][1],roomNo});
-                }
             }
            // System.out.println(pqr);
         }
