@@ -1,28 +1,25 @@
 class MedianFinder {
-    List<Integer> list;
+    PriorityQueue<Integer> min = new PriorityQueue<>();
+    PriorityQueue<Integer> max = new PriorityQueue<>(Comparator.reverseOrder());
     public MedianFinder() {
-        list=new ArrayList<>();
+        
     }
     
     public void addNum(int num) {
-        int st=0,end=list.size();
-        while(st<end){
-            int mid=st+(end-st)/2;
-            if(list.get(mid)>=num){
-                end=mid;
-            }else{
-                st=mid+1;
-            }
-        }
-        list.add(st,num);
+       if(max.size()==0 || num<=max.peek())max.add(num);
+       else min.add(num);
+       if(max.size()>min.size()+1){
+            min.add(max.poll());
+       }else if(min.size()>max.size()){
+            max.add(min.poll());
+       }
     }
     
     public double findMedian() {
-        if(list.size()%2!=0){
-            return list.get(list.size()/2)*1.0;
+        if(min.size()==max.size()){
+            return (min.peek()+max.peek())/2.0;
         }
-        return (list.get(list.size()/2)+list.get((list.size()/2)-1))/2.0;
-   
+        return max.peek();
     }
 }
 
