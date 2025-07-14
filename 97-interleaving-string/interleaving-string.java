@@ -4,7 +4,7 @@ class Solution {
         int n1=s1.length();
         int n2=s2.length();
         int n3=s3.length();
-        if(n1+n2<n3)return false;
+        if(n1+n2!=n3)return false;
         memo=new int[n1+1][n2+1][n3+1];
         return helper(s1,s2,s3,n1-1,n2-1,n3-1);
     }
