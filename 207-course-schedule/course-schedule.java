@@ -22,7 +22,7 @@ class Solution {
     }
     public void dfs(List<List<Integer>> list,int[] visi,int curr){
         complete++;
-        System.out.println(curr);
+       // System.out.println(curr);
         for(int neg:list.get(curr)){
             visi[neg]--;
             if(visi[neg]==0){
