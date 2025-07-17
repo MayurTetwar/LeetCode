@@ -12,19 +12,9 @@ class Solution {
             min=Math.min(arr[i],min);
         }
         int max=arr[n-1];
-        int[] right=new int[n];
         for(int i=n-1;i>=0;i--){
-            if(max>arr[i]){
-                right[i]=max;
-            }else{
-                right[i]=Integer.MIN_VALUE;
-            }
             max=Math.max(arr[i],max);
-        }
-        //System.out.println(Arrays.toString(left));
-        //System.out.println(Arrays.toString(right));
-        for(int i=0;i<n;i++){
-            if(left[i]<arr[i] && arr[i]<right[i]){
+            if(left[i]<arr[i] && arr[i]<max){
                 return true;
             }
         }
