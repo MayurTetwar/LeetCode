@@ -1,33 +1,31 @@
 class Solution {
     public boolean increasingTriplet(int[] arr) {
-        TreeSet<Integer> ts=new TreeSet<>();
         int n=arr.length;
-        Integer[] left=new Integer[n];
+        int min=arr[0];
+        int[] left=new int[n];
         for(int i=0;i<n;i++){
-            if(ts.lower(arr[i])!=null){
-                left[i]=ts.lower(arr[i]);
+            if(min<arr[i]){
+                left[i]=min;
             }else{
                 left[i]=Integer.MAX_VALUE;
             }
-            ts.add(arr[i]);
+            min=Math.min(arr[i],min);
         }
-        ts=new TreeSet<>();
-        Integer[] right=new Integer[n];
+        int max=arr[n-1];
+        int[] right=new int[n];
         for(int i=n-1;i>=0;i--){
-            if(ts.higher(arr[i])!=null){
-                right[i]=ts.higher(arr[i]);
+            if(max>arr[i]){
+                right[i]=max;
             }else{
                 right[i]=Integer.MIN_VALUE;
             }
-            ts.add(arr[i]);
+            max=Math.max(arr[i],max);
         }
         //System.out.println(Arrays.toString(left));
         //System.out.println(Arrays.toString(right));
         for(int i=0;i<n;i++){
-            if(left[i]!=null && right[i]!=null){
-                if(left[i]<arr[i] && arr[i]<right[i]){
-                    return true;
-                }
+            if(left[i]<arr[i] && arr[i]<right[i]){
+                return true;
             }
         }
         return false;
