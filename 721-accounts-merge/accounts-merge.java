@@ -1,4 +1,4 @@
-class Solution {
+class Solution { 
     int[] par;
     public int find(int x){
         if(par[x]!=x){
@@ -20,35 +20,19 @@ class Solution {
             par[i]=i;
             map[i]=-1;
         }
-        List<Set<String>> listSet=new ArrayList<>();
-        for(List<String> user:list){
-            Set<String> set=new HashSet<>();
-            boolean name=true;
-            for(String email:user){
-                if(name){
-                    name=false;
-                }else set.add(email);
-            }
-            listSet.add(set);
-        }
-        System.out.println(listSet);
-        Set<String> visi=new HashSet<>();
+        HashMap<String,Integer> emap=new HashMap<>();
         for(int i=0;i<n;i++){
             for(int j=1;j<list.get(i).size();j++){
-                if(visi.contains(list.get(i).get(j)))continue;
-                visi.add(list.get(i).get(j));
-                for(int k=i+1;k<n;k++){
-                    if(listSet.get(k).contains(list.get(i).get(j))){
-                        union(i,k);
-                    }
+                String em=list.get(i).get(j);
+                if(emap.containsKey(em)){
+                    union(i,emap.get(em));
+                }else{
+                    emap.put(em,i);
                 }
             }
         }
         List<TreeSet<String>> ansSort=new ArrayList<>();
         List<List<String>> ans=new ArrayList<>();
-        // for(int i=0;i<n;i++){
-        //     System.out.println(find(i));
-        // }
         String[] arr=new String[n];
         int pos=0;
         for(int i=0;i<n;i++){
@@ -56,8 +40,6 @@ class Solution {
             if(map[com]==-1){
                 arr[pos]=list.get(i).get(0);
                 map[com]=pos++;
-                // TreeSet<String> ts = new TreeSet<>(list.get(i));
-                // ansSort.add(ts);
                 TreeSet<String> user=new TreeSet<>();
                 for(int j=1;j<list.get(i).size();j++){
                     user.add(list.get(i).get(j));
