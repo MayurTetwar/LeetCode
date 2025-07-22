@@ -1,6 +1,5 @@
 class Solution {
     public int maximumUniqueSubarray(int[] arr) {
-        int[] last=new int[10001];
         boolean[] visi=new boolean[10001];
         int max=0;
         int sum=0;
