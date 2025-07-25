@@ -1,14 +1,18 @@
 class Solution {
     public int maxSum(int[] arr) {
-        Arrays.sort(arr);
-        HashSet<Integer> set=new HashSet();
         int max=Integer.MIN_VALUE;
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+            max=Math.max(max,arr[i]);
+        }
+        if(max<=0)return max;
         int sum=0;
-        for(int i=arr.length-1;i>=0;i--){
-            if(set.contains(arr[i]))continue;
-            sum+=arr[i];
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<n;i++){
+            if(set.contains(arr[i]) || arr[i]<=0)continue;
             set.add(arr[i]);
-            max=Math.max(max,sum);
+            sum+=arr[i];
+            max=Math.max(sum,max);
         }
         return max;
     }
