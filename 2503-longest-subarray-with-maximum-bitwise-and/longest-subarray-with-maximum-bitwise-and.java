@@ -10,7 +10,6 @@ class Solution {
             while(j<n && arr[i]==arr[j]){
                 j++;
             }
-          //  System.out.println(currmax);
             if(currmax>=max){
                 if(currmax>max)len=j-i;
                 else len=Math.max(len,j-i);
