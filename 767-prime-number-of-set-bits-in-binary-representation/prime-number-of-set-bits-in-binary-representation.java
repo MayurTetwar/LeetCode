@@ -1,7 +1,6 @@
 class Solution {
     boolean st=true;
     boolean[] prime;
-    int[] arr;
     public void find(){
         prime[0]=true;
         prime[1]=true;
@@ -13,23 +12,19 @@ class Solution {
             }
         }
     }
-    public void find2(){
-        for(int i=1;i<=1000000;i++){
-            int count=Integer.bitCount(i);
-            if(!prime[count]){
-                arr[i]++;
-            }
-            arr[i]+=arr[i-1];
-        }
-    }
     public int countPrimeSetBits(int left, int right) {
         if(st){
             prime=new boolean[33];
-            find();
-            arr=new int[1000001];
-            find2();
             st=false;
+            find();
         }
-        return arr[right]-arr[left-1];
+        int count=0;
+        for(int i=left;i<=right;i++){
+            int set=Integer.bitCount(i);
+            if(!prime[set]){
+                count++;
+            }
+        }
+        return count;
     }
 }
