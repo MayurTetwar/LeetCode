@@ -1,18 +1,21 @@
 class Solution {
     List<List<Integer>> list;
+    HashMap<Long,Boolean> map;
     public boolean makesquare(int[] arr) {
         int total=0;
         for(int num:arr)total+=num;
+        map=new HashMap<>();
         if(total%4!=0)return false;
         list=new ArrayList<>();
         helper(arr,0,new ArrayList<>(),total/4);
         // System.out.println(list);
-        boolean[] visi=new boolean[16];
-        boolean ans=find(list,0,visi,0);
+        boolean ans=find(list,0,0,0);
         return ans;
     }
   
-    public boolean find(List<List<Integer>> list,int i,boolean[] visi,int count){
+    public boolean find(List<List<Integer>> list,int i,int mask,int count){
+        long str=((long)mask<<7)|(count<<4)|i;
+        if(map.containsKey(str))return map.get(str);
         if(count==4){
             return true;
         }
@@ -20,24 +23,28 @@ class Solution {
      
         boolean valid=true;
         for(int ind:list.get(i)){
-            if(visi[ind]){
+            if((mask&(1<<ind))!=0){
                 valid=false;
                 break;
             }
         }
         if(valid){
             for(int ind:list.get(i)){
-                visi[ind]=true;
+                mask=(mask|(1<<ind));
             }
-            // System.out.println(list.get(i)+" "+(count+1));
-            boolean val2=find(list,i+1,visi,count+1);
-            if(val2)return true;
+            //System.out.println(mask+" "+i);
+            boolean val2=find(list,i+1,mask,count+1);
+            if(val2){
+                map.put(str,true);
+                return true;
+            }
             for(int ind:list.get(i)){
-                visi[ind]=false;
+                mask=(mask&(~(1<<ind)));
             }
         }
         // }else System.out.println(list.get(i)+" inva");
-        boolean val1=find(list,i+1,visi,count);
+        boolean val1=find(list,i+1,mask,count);
+        map.put(str,val1);
         return val1;
     }
 
