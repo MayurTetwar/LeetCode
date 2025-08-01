@@ -16,7 +16,7 @@ class Solution {
         if(count==4){
             return true;
         }
-        if(i==list.size())return false;
+        if(i==list.size() || count>4)return false;
      
         boolean valid=true;
         for(int ind:list.get(i)){
