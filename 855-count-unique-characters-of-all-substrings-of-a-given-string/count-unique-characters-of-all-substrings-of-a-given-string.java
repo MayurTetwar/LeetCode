@@ -17,8 +17,8 @@ class Solution {
             prev[i]=ch[c];
             ch[c]=i;
         }
-        System.out.println(Arrays.toString(prev));
-        System.out.println(Arrays.toString(next));
+        // System.out.println(Arrays.toString(prev));
+        // System.out.println(Arrays.toString(next));
         int ans=0;
         for(int i=0;i<n;i++){
             int pr=prev[i];
