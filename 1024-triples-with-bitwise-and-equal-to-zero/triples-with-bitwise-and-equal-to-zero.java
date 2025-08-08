@@ -7,8 +7,9 @@ class Solution {
             }
         }
         int ans=0;
-        for(int num:arr){
-            for(int i=0;i<map.length;i++){
+        for(int i=0;i<map.length;i++){
+            if(map[i]==0)continue;
+            for(int num:arr){
                 if((num&i)==0){
                     ans+=map[i];
                 }
