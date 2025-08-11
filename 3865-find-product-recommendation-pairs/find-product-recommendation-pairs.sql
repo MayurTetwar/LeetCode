@@ -5,8 +5,8 @@ with product_count as (
         p2.product_id as product2_id , 
         count(p1.user_id) as customer_count 
     from
-    ProductPurchases p1 cross join ProductPurchases p2
-    where p1.product_id < p2.product_id and p1.user_id = p2.user_id
+    ProductPurchases p1 inner join ProductPurchases p2
+    on p1.product_id < p2.product_id and p1.user_id = p2.user_id
     group by p1.product_id,p2.product_id
     having count(p1.user_id) > 2
 )
