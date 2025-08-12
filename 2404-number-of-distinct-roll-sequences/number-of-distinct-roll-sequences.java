@@ -2,8 +2,8 @@ class Solution {
     Long memo[][][];
     long mod=1000000007;
     public int distinctSequences(int n) {
-        memo=new Long[n+1][8][8];
-        return (int)helper(n,7,0);
+        memo=new Long[n+1][7][7];
+        return (int)helper(n,0,0);
     }
     public long helper(int n,int last,int lastsec){
         if(n==0){
@@ -13,7 +13,7 @@ class Solution {
             return memo[n][last][lastsec];
         long res=0;
         for(int i=1;i<=6;i++){
-            if(gcd(last,i)!=1)continue;
+            if(last!=0 && gcd(last,i)!=1)continue;
             if(i!=last && i!=lastsec){
                 res=(res+helper(n-1,i,last))%mod;
             }
@@ -21,7 +21,6 @@ class Solution {
         return memo[n][last][lastsec]=res;
     }
     public int gcd(int a, int b) {
-        if(a==7)return 1;
         if (a == 0)
             return b;
         return gcd(b % a, a);
