@@ -1,6 +1,5 @@
 class Solution {
     public boolean isPowerOfFour(int n) {
-     //   System.out.println(Integer.MAX_VALUE);
         return helper(1,n);
     }
     public boolean helper(long num,int n){
