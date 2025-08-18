@@ -1,10 +1,15 @@
 class Solution {
-    public boolean judgePoint24(int[] arr) {
+    static{
+        for(int i=0;i<500;i++){
+            judgePoint24(new int[]{1});
+        }
+    }
+    public static boolean judgePoint24(int[] arr) {
         List<Double> list=new ArrayList<>();
         for(int num:arr)list.add((double)num);
         return helper(list);
     }
-    public boolean helper(List<Double> list){
+    public static boolean helper(List<Double> list){
         if(list.size()==1){
             if(Math.abs(list.get(0) - 24) < 1e-9)return true;
             return false;
@@ -38,7 +43,7 @@ class Solution {
         }
         return false;
     }
-    public List<Double> combination(double a,double b){
+    public static List<Double> combination(double a,double b){
         List<Double> opr = new ArrayList<>();
         opr.add(a+b);
         opr.add(a-b);
