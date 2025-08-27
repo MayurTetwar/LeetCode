@@ -3,15 +3,7 @@ class Solution {
         int n=arr.length;
         int m=arr[0].length;
         int ans=0;
-
-        // for(int i=0;i<n;i++){
-        //     System.out.println(Arrays.toString(arr[i]));
-        // }
         int[][] rb=new int[n][m];
-        if(n*m==1){
-            if(arr[0][0]==1)return 1;
-            return 0;
-        }
         boolean[][] onerb=new boolean[n][m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
@@ -51,7 +43,6 @@ class Solution {
                 if(i==0 || j==m-1){
                     if(arr[i][j]==1){
                         onelb[i][j]=true;
-                        ans=1;
                     }
                     continue;
                 }
@@ -69,7 +60,6 @@ class Solution {
                         onelb[i][j]=onelb[i-1][j+1];
                     }
                 }else{
-                    ans=1;
                     onelb[i][j]=true;
                 }
             }
@@ -83,7 +73,6 @@ class Solution {
                 if(i==n-1 || j==m-1){
                     if(arr[i][j]==1){
                         onetl[i][j]=true;
-                        ans=1;
                     }
                     continue;
                 }
@@ -95,13 +84,12 @@ class Solution {
                 }else if(arr[i][j]==2){
                     if(arr[i+1][j+1]==0){
                         tl[i][j]=tl[i+1][j+1]+1;
-                    onetl[i][j]=onetl[i+1][j+1];
+                        onetl[i][j]=onetl[i+1][j+1];
                     }else if(arr[i+1][j+1]==1){
                         tl[i][j]=2;
-                    onetl[i][j]=onetl[i+1][j+1];
+                        onetl[i][j]=onetl[i+1][j+1];
                     }
                 }else{
-                    ans=1;
                     onetl[i][j]=true;
                 }
             }
@@ -115,14 +103,13 @@ class Solution {
                 if(i==n-1 || j==0){
                     if(arr[i][j]==1){
                         onetr[i][j]=true;
-                        ans=1;
                     }
                     continue;
                 }
                 if(arr[i][j]==0){
                     if(arr[i+1][j-1]==2){
                         tr[i][j]=tr[i+1][j-1]+1;
-                    onetr[i][j]=onetr[i+1][j-1];
+                        onetr[i][j]=onetr[i+1][j-1];
                     }
                 }else if(arr[i][j]==2){
                     if(arr[i+1][j-1]==0){
@@ -130,10 +117,9 @@ class Solution {
                         onetr[i][j]=onetr[i+1][j-1];
                     }else if(arr[i+1][j-1]==1){
                         tr[i][j]=2;
-                    onetr[i][j]=onetr[i+1][j-1];
+                        onetr[i][j]=onetr[i+1][j-1];
                     }
                 }else{
-                    ans=1;
                     onetr[i][j]=true;
                 }
             }
