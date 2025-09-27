@@ -18,47 +18,33 @@ class Solution {
         }
         return ans;
     }
-    private int[] buildLPS(String pat) {
-        int m = pat.length();
-        int[] lps = new int[m];
-        int len = 0, i = 1;
-        
-        while (i < m) {
-            if (pat.charAt(i) == pat.charAt(len)) {
-                lps[i++] = ++len;
-            } else {
-                if (len != 0) {
-                    len = lps[len - 1];
-                } else {
-                    lps[i++] = 0;
-                }
+    public List<Integer> search(String te,String pat){
+        String com=pat.concat("$").concat(te);
+        int[] z=computeZ(com);
+        List<Integer> list=new ArrayList<>();
+        for(int i=0;i<z.length;i++){
+            if(z[i]==pat.length()){
+                list.add(i-pat.length()-1);
             }
         }
-        return lps;
+        return list;
     }
-
-    // KMP search
-    public List<Integer> search(String txt, String pat) {
-        int n = txt.length(), m = pat.length();
-        List<Integer> res = new ArrayList<>();
-        int[] lps = buildLPS(pat);
-        
-        int i = 0, j = 0;
-        while (i < n) {
-            if (txt.charAt(i) == pat.charAt(j)) {
-                i++; j++;
-                if (j == m) {
-                    res.add(i - j);  // found occurrence
-                    j = lps[j - 1]; // continue search
-                }
-            } else {
-                if (j != 0) {
-                    j = lps[j - 1];
-                } else {
-                    i++;
-                }
+    public int[] computeZ(String s){
+        int n=s.length();
+        int[] z=new int[n];
+        int l=0,r=0;
+        for(int i=1;i<n;i++){
+            if(i<=r){
+                z[i]=Math.min(r-i+1,z[i-l]);
+            }
+            while(i+z[i]<n && s.charAt(z[i])==s.charAt(z[i]+i)){
+                z[i]++;
+            }
+            if(i+z[i]-1>r){
+                l=i;
+                r=i+z[i]-1;
             }
         }
-        return res;
+        return z;
     }
 }
