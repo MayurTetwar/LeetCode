@@ -6,6 +6,7 @@ class Solution {
             pq.add(i);
         }
         List<Integer> list=new ArrayList<>();
+        boolean[] visi=new boolean[n];
         Stack<Integer> stk=new Stack<>();
         while(!pq.isEmpty()){
             int curr=pq.poll();
@@ -16,18 +17,17 @@ class Solution {
                     stk.pop();
                     hel[curr]--;
                 }
-                if(stk.isEmpty())list.add(curr);
+                if(stk.isEmpty())visi[curr]=true;
                 else if(hel[stk.peek()]==hel[curr])stk.pop();
                 else hel[stk.peek()]--;
             }
         }
         List<Integer> ans=new ArrayList<>();
         while(!stk.isEmpty()){
-            list.add(stk.pop());
+            visi[stk.pop()]=true;
         }
-        Collections.sort(list);
-        for(int ind:list){
-            ans.add(hel[ind]);
+        for(int i=0;i<n;i++){
+            if(visi[i])ans.add(hel[i]);
         }
         return ans;
     }
