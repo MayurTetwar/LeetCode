@@ -1,46 +1,42 @@
 class Solution {
-    static{
-        for(int i=0;i<500;i++){
-            longestPalindrome("a");
-        }
+    public String longestPalindrome(String s) {
+        return longestPalindrome2(s);
     }
-    public static String longestPalindrome(String s) {
-        int n=s.length();
-        int start=0;
-        int end=0;
-        for(int i=0;i<n;i++){
-            int left=i-1, right=i+1;
-            while(left>=0 && right<n){
-                if(s.charAt(left)!=s.charAt(right)){
-                    break;
-                }
-                if(end-start<right-left){
-                    end=right;
-                    start=left;
-                }
-                left--;
-                right++;
+    public String longestPalindrome2(String s) {
+        // Preprocess
+        StringBuilder sb = new StringBuilder("^");
+        for (char c : s.toCharArray()) sb.append("#").append(c);
+        sb.append("#$");
+        String t = sb.toString();
+        int n = t.length();
+        int[] P = new int[n];
+        int C = 0, R = 0;
+
+        for (int i = 1; i < n - 1; i++) {
+            int mirr = 2 * C - i; // mirror of i around C
+
+            if (i < R) P[i] = Math.min(R - i, P[mirr]);
+
+            // Expand palindrome centered at i
+            while (t.charAt(i + (1 + P[i])) == t.charAt(i - (1 + P[i]))) P[i]++;
+
+            // Update C and R
+            if (i + P[i] > R) {
+                C = i;
+                R = i + P[i];
             }
-            left=i;
-            right=i;
-           
-            if(i<n-1 && s.charAt(left)==s.charAt(right+1)){
-                left=i;
-                right=i+1;
-                while(left>=0 && right<n){
-                    if(s.charAt(left)!=s.charAt(right)){
-                        break;
-                    }
-                    if(end-start<right-left){
-                        end=right;
-                        start=left;
-                    }
-                    left--;
-                    right++;
-                }
-            }
-            //System.out.println(start+" "+end+" "+i);
         }
-        return s.substring(start,end+1);
+
+        // Find max palindrome
+        int maxLen = 0, centerIndex = 0;
+        for (int i = 1; i < n - 1; i++) {
+            if (P[i] > maxLen) {
+                maxLen = P[i];
+                centerIndex = i;
+            }
+        }
+
+        int start = (centerIndex - maxLen) / 2;
+        return s.substring(start, start + maxLen);
     }
 }
