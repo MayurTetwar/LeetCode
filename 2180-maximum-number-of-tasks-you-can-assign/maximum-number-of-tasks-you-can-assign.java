@@ -5,9 +5,13 @@ class Solution {
         int n=task.length;
         int m=arr.length;
         int st=1,end=Math.min(n,m);
+        TreeMap<Integer,Integer> map=new TreeMap<>();
+        for(int i=0;i<arr.length;i++){
+            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+        }
         while(st<=end){
             int mid=st+(end-st)/2;
-            if(check(task,mid,arr,pill,str)){
+            if(check(task,mid,arr,pill,str,map)){
                 st=mid+1;
             }else{
                 end=mid-1;
@@ -15,11 +19,8 @@ class Solution {
         }
         return st-1;
     }
-    public boolean check(int[] task,int end,int[] arr,int p,int str){
-        TreeMap<Integer,Integer> map=new TreeMap<>();
-        for(int i=arr.length-end;i<arr.length;i++){
-            map.put(arr[i],map.getOrDefault(arr[i],0)+1);
-        }
+    public boolean check(int[] task,int end,int[] arr,int p,int str,TreeMap<Integer,Integer> m){
+        TreeMap<Integer,Integer> map=new TreeMap<>(m);
         for(int i=end-1;i>=0;i--){
             Integer key=map.lastKey();
             if(key>=task[i]){
