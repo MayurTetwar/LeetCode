@@ -1,31 +1,22 @@
 class Solution {
-    List<Long> list;
-    HashMap<Long,Integer> map;
     public long maximumTotalDamage(int[] arr) {
-        map=new HashMap<>();
-        list=new ArrayList<>();
+        TreeMap<Long,Integer> tm=new TreeMap<>();
         for(int num:arr){
             long val=num;
-            if(!map.containsKey(val)){
-                map.put(val,0);
-                list.add(val);
-            }
-            map.put(val,map.get(val)+1);
+            tm.put(val,tm.getOrDefault(val,0)+1);
         }   
-        Collections.sort(list);
-        TreeMap<Long,Integer> tm=new TreeMap<>();
-        long[] dp=new long[list.size()];
+        long[] dp=new long[tm.size()];
         int i=0;
-        for(long num:list){
+        for(long num:tm.keySet()){
             Long val=tm.lowerKey(num-2);
             if(val!=null){
                 dp[i]+=dp[tm.get(val)];
             }
-            dp[i]+=num*map.get(num);
+            dp[i]+=num*tm.get(num);
             if(i>0)dp[i]=Math.max(dp[i],dp[i-1]);
             tm.put(num,i);
             i++;
         }
-        return dp[list.size()-1];
+        return dp[dp.length-1];
     }
 }
