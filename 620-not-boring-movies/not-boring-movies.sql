@@ -1,2 +1,5 @@
--- Write your PostgreSQL query statement below
-select * from Cinema where description!='boring' and (id%2!=0) order by rating desc;
+/* Write your PL/SQL query statement below */
+SELECT *
+FROM Cinema 
+WHERE description<>'boring' AND mod(id,2)=1
+ORDER BY rating DESC;
