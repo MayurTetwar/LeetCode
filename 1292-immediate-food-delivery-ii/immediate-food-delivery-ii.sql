@@ -1,16 +1,16 @@
--- Write your PostgreSQL query statement below
-
-select 
-round(
-    sum(
-        case 
-        when order_date=customer_pref_delivery_date then 1.0
-        end
-    )*100.0/count(*)
-,2) as immediate_percentage 
-from Delivery 
-where (customer_id ,order_date ) in (
-    select customer_id,min(order_date)
-    from Delivery 
-    group by customer_id
-)
+SELECT 
+    ROUND(
+        (
+            (SELECT COUNT(*) 
+             FROM (
+                 SELECT customer_id
+                 FROM Delivery
+                 GROUP BY customer_id
+                 HAVING MIN(order_date) = MIN(customer_pref_delivery_date)
+             )
+            ) * 100.0
+        ) / 
+        (SELECT COUNT(DISTINCT customer_id) FROM Delivery),
+        2
+    ) AS immediate_percentage
+FROM dual;
