@@ -3,19 +3,18 @@ class Solution {
         Arrays.sort(arr);
         int n=arr.length;
         int st=0;
-        int end=arr[n-1]+d;
+        int end=arr[n-1]+d-arr[0];
         int ans=1000000000;
         while(st<=end){
             int mid=st+(end-st)/2;
             if(helper(arr.clone(),d,mid)){
                 st=mid+1;
-                ans=mid;
             }else{
                 end=mid-1;
             }
         //    System.out.println(ans+" "+st+" "+end);
         }
-        return Math.min(arr[n-1]+d-arr[0],ans);
+        return end;
     }
     public boolean helper(int[] arr,int d,int tar){
         int n=arr.length;
