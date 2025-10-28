@@ -32,8 +32,8 @@ class Solution {
             min=Math.min(right[i],min);
             right[i]=min;
         }
-        System.out.println(Arrays.toString(left));
-        System.out.println(Arrays.toString(right));
+        // System.out.println(Arrays.toString(left));
+        // System.out.println(Arrays.toString(right));
         int ans=Integer.MAX_VALUE;
         for(i=1;i<n;i++){
             ans=Math.min(ans,left[i]+right[i-1]);
