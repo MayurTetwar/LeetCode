@@ -14,46 +14,40 @@
  * }
  */
 class Solution {
+    int count;
+    int height;
     TreeNode ans;
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
-        int depth=getDepth(root);
-        int leafNode=getLeftNode(root,depth,1);
-        // System.out.println(leafNode+" "+depth);
-        helper(root,depth,1,leafNode);
+        height = getheight(root);
+        count = dfs(root,1);
+        ans = null ;
+        dfs2(root,1);
         return ans;
     }
-     public int helper(TreeNode root,int depth,int height,int leafNode){
-        if(root==null)return 0;
-        if(root.left==null && root.right==null){
-          //  System.out.println(depth+" "+height);
-            if(depth==height){
-                if(leafNode==1){
-                    ans=root;
-                    return -1000;
-                }
-                return 1;
-            }
+    public int dfs2(TreeNode root,int level){
+        if(root==null){
             return 0;
         }
-        int val=helper(root.left,depth,height+1,leafNode)+helper(root.right,depth,height+1,leafNode);
-        if(val==leafNode){
-            //System.out.println(root.val);
+        int add=0;
+        if(height==level)add=1;
+        int left=dfs2(root.left,level+1);
+        int right=dfs2(root.right,level+1);
+        if(left+right+add==count && ans==null){
             ans=root;
-            return -1000;
         }
-        return val;
+        return left+right+add;
     }
-    public int getDepth(TreeNode root){
+    public int dfs(TreeNode root,int level){
         if(root==null)return 0;
-        return Math.max(getDepth(root.left),getDepth(root.right))+1;
+        if(height==level)return 1;
+        int left=dfs(root.left,level+1);
+        int right=dfs(root.right,level+1);
+        return left+right;
     }
-    public int getLeftNode(TreeNode root,int depth,int height){
+    public int getheight(TreeNode root){
         if(root==null)return 0;
-        if(root.left==null && root.right==null){
-          //  System.out.println(depth+" "+height);
-            if(depth==height)return 1;
-            return 0;
-        }
-        return getLeftNode(root.left,depth,height+1)+getLeftNode(root.right,depth,height+1);
+        int left=getheight(root.left)+1;
+        int right=getheight(root.right)+1;
+        return Math.max(left,right);
     }
 }
