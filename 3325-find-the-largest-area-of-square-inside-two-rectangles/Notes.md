@@ -1,0 +1,1 @@
+<h2>find-the-largest-area-of-square-inside-two-rectangles Notes</h2><hr>[ Time taken: 1 hr 16 m 32 s ]
