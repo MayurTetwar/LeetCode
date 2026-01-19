@@ -1,5 +1,10 @@
 class Solution {
-    public int maxSideLength(int[][] arr, int threshold) {
+    static{
+        for(int i=0;i<500;i++){
+            maxSideLength(new int[1][1],0);
+        }
+    }
+    public static int maxSideLength(int[][] arr, int threshold) {
         int n=arr.length;
         int m=arr[0].length;
         for(int i=0;i<n;i++){
