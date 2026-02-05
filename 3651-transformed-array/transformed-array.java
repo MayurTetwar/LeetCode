@@ -9,7 +9,7 @@ class Solution {
             }else if(arr[i]<0){
                 int ind=(i+arr[i])%n;
                 if(ind<0)ind+=n;
-                System.out.println(ind);
+                // System.out.println(ind);
                 ans[i]=arr[ind];
             }else{
                 ans[i]=arr[i];
