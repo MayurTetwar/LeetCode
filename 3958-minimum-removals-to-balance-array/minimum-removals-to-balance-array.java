@@ -6,8 +6,8 @@ class Solution {
         Arrays.sort(arr);
         int j=0;
         for(int i=0;i<n;i++){
-            while(j<n-1 && (long)arr[i]*k>=arr[j+1])j++;
-            if(i<=j)ans=Math.min(ans,n-j-1+i);
+            while(j<n && (long)arr[i]*k>=arr[j])j++;
+            ans=Math.min(ans,n-j+i);
         }
         return ans;
     }
