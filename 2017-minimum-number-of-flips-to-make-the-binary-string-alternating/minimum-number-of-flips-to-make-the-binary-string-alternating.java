@@ -24,14 +24,11 @@ class Solution {
             flag=!flag;
         }
         int ans=Math.min(one[n-1],zero[n-1]);
-        // System.out.println(Arrays.toString(one));
-        // System.out.println(Arrays.toString(zero));
-        for(int i=0;i<n;i++){
-            if(i%2!=(n-i)%2){
+        if(n%2==1){    
+            for(int i=0;i<n;i++){
                 ans=Math.min(ans,one[i]+zero[n-1]-zero[i]);
                 ans=Math.min(ans,zero[i]+one[n-1]-one[i]);
             }
-            // System.out.println(ans+" "+i);
         }
         return ans;
     }
