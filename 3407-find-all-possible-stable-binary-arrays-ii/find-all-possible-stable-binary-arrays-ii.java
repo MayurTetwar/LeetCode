@@ -23,8 +23,6 @@ class Solution {
                 ways=(ways-helper(zero,one-limit-1,1,limit)+mod)%mod;
             }
         }
-        // ways-=helper()
-        // ways=Math.max(ways,0);
         if(prev!=-1)memo[zero][one][prev]=ways;
         return ways;
     }
