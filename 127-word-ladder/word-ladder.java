@@ -23,7 +23,7 @@ class Solution {
             }
             int i=0;
             for(String s:list){
-                if(same(s,curr.s) && !visi[i]){
+                if(!visi[i] && same(s,curr.s)){
                     visi[i]=true;
                     q.add(new Node(s,curr.count+1));
                 }
