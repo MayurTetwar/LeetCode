@@ -34,9 +34,9 @@ class Solution {
         memo=new long[arr.length][arr[0].length][2];
         visi=new boolean[arr.length][arr[0].length];
         long[] ans=helper(arr,0,0);
-        for(long[][] me:memo){
-            System.out.println(Arrays.deepToString(me));
-        }
+        // for(long[][] me:memo){
+        //     System.out.println(Arrays.deepToString(me));
+        // }
         if(Math.max(ans[0],ans[1])<0)return -1;
         return (int)(Math.max(ans[0],ans[1])%mod);
     }
