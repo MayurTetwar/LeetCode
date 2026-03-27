@@ -1,17 +1,22 @@
 class Solution {
+    Integer[] memo;
     public int lengthOfLIS(int[] arr) {
         int n=arr.length;
-        int[] dp=new int[n];
-        Arrays.fill(dp,1);
-        int max=1;
-        for(int i=1;i<n;i++){
-            for(int j=i-1;j>=0;j--){
-                if(arr[i]>arr[j]){
-                    dp[i]=Math.max(dp[i],dp[j]+1);
-                    max=Math.max(dp[i],max);
-                }
-            }
+        memo=new Integer[n];
+        return helper(arr,-1);
+    }
+    public int helper(int[] arr,int i){
+        int n=arr.length;
+        if(i==n)return 0; 
+        if(i!=-1 && memo[i]!=null)return memo[i];
+        int res=0;
+        for(int j=i+1;j<n;j++){
+            if(i==-1){
+                res=Math.max(res,helper(arr,j)+1);
+            }else if(arr[i]<arr[j])
+                res=Math.max(res,helper(arr,j)+1);
         }
-        return max;
+        if(i!=-1)memo[i]=res;
+        return res;
     }
 }
