@@ -1,31 +1,25 @@
 class Solution {
     Integer[][][] memo;
     public int maximumAmount(int[][] arr) {
-        int n=arr.length;
-        int m=arr[0].length;
-        memo=new Integer[n][m][3];
-        return helper(arr,arr.length-1,arr[0].length-1,0);
+        memo=new Integer[arr.length][arr[0].length][3];
+        return helper(arr,0,0,0);
     }
-    public int helper(int[][] arr,int i,int j,int neu){
-        if(i<0 || j<0){
-            return Integer.MIN_VALUE;
-        }
-        if(i==0 && j==0){
-            if(arr[i][j]<0 && neu<2)return 0;
+    public int helper(int[][] arr,int i,int j,int n){
+        if(arr.length==i || arr[0].length==j)return (int)-1e9;
+        if(arr.length-1==i && arr[0].length-1==j){
+            if(n<2 && arr[i][j]<0)return 0;
             return arr[i][j];
         }
-        if(memo[i][j][neu]!=null)return memo[i][j][neu];
-        int ans=Integer.MIN_VALUE;
-        if(arr[i][j]<0){
-            if(neu<2){
-                int val1=helper(arr,i-1,j,neu+1);
-                int val2=helper(arr,i,j-1,neu+1);
-                ans=Math.max(val1,val2);
-            }
+        if(memo[i][j][n]!=null)return memo[i][j][n];
+        int res1=(int)-1e9;
+        if(n<2 && arr[i][j]<0){
+            int r1=helper(arr,i+1,j,n+1);
+            int r2=helper(arr,i,j+1,n+1);
+            res1=Math.max(r1,r2);
         }
-            int val1=helper(arr,i-1,j,neu);
-            int val2=helper(arr,i,j-1,neu);
-            ans=Math.max(Math.max(val1,val2)+arr[i][j],ans);
-        return memo[i][j][neu]=ans;
+        int r1=helper(arr,i+1,j,n);
+        int r2=helper(arr,i,j+1,n);
+        int res2=Math.max(r1,r2)+arr[i][j];
+        return memo[i][j][n]=Math.max(res1,res2);
     }
 }
