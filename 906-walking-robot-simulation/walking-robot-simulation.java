@@ -28,7 +28,6 @@ class Solution {
                         j=j-dir[d][1];
                         break;
                     }
-                        // System.out.println(i+" "+j);
                     arr[k]--;
                 }
                 ans=Math.max(ans,i*i+j*j);
