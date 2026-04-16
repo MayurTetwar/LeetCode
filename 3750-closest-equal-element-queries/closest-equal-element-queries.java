@@ -1,45 +1,30 @@
 class Solution {
     public List<Integer> solveQueries(int[] arr, int[] que) {
         int n=arr.length;
-        int m=que.length;
-        List<Integer> ans=new ArrayList<>();
-        HashMap<Integer,List<Integer>> map=new HashMap<>();
+        int[] ans=new int[n];
+        Arrays.fill(ans,n);
+        HashMap<Integer,Integer> map=new HashMap<>();
+        HashMap<Integer,Integer> first=new HashMap<>();
         for(int i=0;i<n;i++){
-            List<Integer> list=map.getOrDefault(arr[i],new ArrayList<>());
-            list.add(i);
-            map.put(arr[i],list);
+            if(!first.containsKey(arr[i])){
+                first.put(arr[i],i);
+            }
+            if(map.containsKey(arr[i])){
+                int idx=map.get(arr[i]);    
+                // System.out.println(i+" "+first.get(arr[i]));
+                ans[i]=Math.min(ans[i],Math.min(i-idx,n+first.get(arr[i])-i));
+                ans[idx]=Math.min(ans[idx],Math.min(i-idx,n+first.get(arr[i])-idx));
+            }
+            map.put(arr[i],i);
         }
-        for(int idx:que){
-            if(map.get(arr[idx]).size()==1){
-                ans.add(-1);
-            }else{
-                List<Integer> list=map.get(arr[idx]);
-                int start=0;
-                int end=list.size()-1;
-                int mid=0;
-                while(start<=end){
-                    mid=start+(end-start)/2;
-                    if(list.get(mid)==idx){
-                        break;
-                    }else if(list.get(mid)<idx){
-                        start=mid+1;
-                    }else{
-                        end=mid-1;
-                    }
-                }
-                int max=0;
-                //int toAdd=0;
-                //System.out.println(list+" "+mid+" "+idx);
-                if(mid+1==list.size()){
-                    max=Math.min(n-(idx-list.get(0)),(idx-list.get(mid-1)));
-                }else if(mid==0){
-                    max=Math.min(n-(list.get(list.size()-1)-idx),(list.get(mid+1)-idx));
-                }else{
-                   max= Math.min(list.get(mid+1)-idx,idx-list.get(mid-1));
-                }
-                ans.add(max);
+        List<Integer> res=new ArrayList<>();
+        for(int q:que){
+            if(ans[q]==n)res.add(-1);
+            else{
+                int last=map.get(arr[q]);
+                res.add(Math.min(ans[q],n-last+q));
             }
         }
-        return ans;
+        return res;
     }
 }
