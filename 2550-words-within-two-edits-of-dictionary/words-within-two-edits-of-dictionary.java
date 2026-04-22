@@ -9,6 +9,7 @@ class Solution {
                 int diff=0;
                 for(int i=0;i<s.length();i++){
                     if(q.charAt(i)!=s.charAt(i))diff++;
+                    if(diff>2)break;
                 }
                 if(diff<3){
                     ans.add(q);
