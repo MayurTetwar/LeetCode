@@ -1,27 +1,21 @@
 class Solution {
-    static int[] ans=new int[10001];
-    static{
-        getOrans(10000);
-    }
-    static public int getOrans(int n){
-        int count=0;
-       // System.out.println(n);
+    public int rotatedDigits(int n) {
+        int ans=0;
         for(int i=1;i<=n;i++){
-            String s=String.valueOf(i);
-            if(conOne(s) && conTwo(s))count++;
-            ans[i]=count;
+            boolean rot=false;
+            int val=i;
+            while(val>0){
+                int dig=val%10;
+                if(dig==3 || dig==4 || dig==7){
+                    rot=false;
+                    break;
+                }else if(dig==2 || dig==5 || dig==6 || dig==9){
+                    rot=true;
+                }
+                val/=10;
+            }
+            if(rot)ans++;
         }
-        return count;
-    }
-    static public int rotatedDigits(int n) {
-        return ans[n];
-    }
-    static public boolean conOne(String s){
-        if(s.contains("2") || s.contains("5") || s.contains("6") || s.contains("9"))return true;
-        return false;
-    }
-    static public boolean conTwo(String s){
-        if(s.contains("3") || s.contains("4") || s.contains("7"))return false;
-        return true;
+        return ans;
     }
 }
