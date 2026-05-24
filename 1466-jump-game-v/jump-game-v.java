@@ -7,7 +7,6 @@ class Solution {
             if(memo[i]==null){
                 helper(arr,i,d);
             }
-            // System.out.println(Arrays.toString(memo));
         }
         int max=0;
         for(int i=0;i<n;i++){
