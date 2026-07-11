@@ -1,46 +1,49 @@
 class Solution {
-    static{
-        for(int i=0;i<500;i++){
-countCompleteComponents(2,new int[][]{{0,1}});
+    int[] par;
+    public int find(int x){
+        if(par[x]!=x){
+            par[x]=find(par[x]);
+        }
+        return par[x];
+    }
+    public void union(int x,int y){
+        int com1=find(x);
+        int com2=find(y);
+        if(com1!=com2){
+            par[com1]=com2;
         }
     }
-    public static int countCompleteComponents(int total, int[][] arr) {
-        List<List<Integer>> list=new ArrayList<>();
-        int n=arr.length;
-        for(int i=0;i<total;i++){
-            list.add(new ArrayList<>());
+    public int countCompleteComponents(int n, int[][] arr) {
+        int m=arr.length;
+        par=new int[n];
+        List<Integer>[] size=new ArrayList[n];
+        for(int i=0;i<n;i++){
+            par[i]=i;
+            size[i]=new ArrayList<>();
         }
-        for(int []a:arr){
-            list.get(a[0]).add(a[1]);
-            list.get(a[1]).add(a[0]);
+        for(int[] a:arr){
+            union(a[0],a[1]);
         }
-        int count=0;
-        boolean[] visi=new boolean[total];
-
-        for(int i=0;i<total;i++){
-            if(!visi[i]){
-                List<Integer> all=new ArrayList<>();
-                int size=helper(i,list,visi,total,all);
-                int j=0;
-                for(j=0;j<all.size();j++){
-              //  System.out.println(list.get(all.get(j)).size()+" "+(size-1));
-                    if(list.get(all.get(j)).size()!=size-1)break;
+        for(int i=0;i<n;i++){
+            int p=find(i);
+            size[p].add(i);
+        }
+        int ans=0;
+        for(List<Integer> list:size){
+            int s=list.size();
+            boolean flag=true;
+            for(int num:list){
+                int count=0;
+                for(int[] a:arr){
+                    if(a[0]==num || a[1]==num)count++;
                 }
-                if(j==all.size())count++;
+                if(count!=s-1){
+                    flag=false;
+                    break;
+                }
             }
+            if(s>0 && flag)ans++;
         }
-        return count;
-    }
-    public static int helper(int node,List<List<Integer>> list,boolean[] visi,int total,List<Integer> all){
-        visi[node]=true;
-        all.add(node);
-        int count=1;
-        for(int num:list.get(node)){
-            if(!visi[num]){
-                //System.out.println(size+" "+list.get(num).size)  
-                count+=helper(num,list,visi,total,all);
-            }
-        }
-        return count;
+        return ans;
     }
 }
