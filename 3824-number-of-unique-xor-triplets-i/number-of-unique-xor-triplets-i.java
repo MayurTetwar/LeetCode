@@ -4,7 +4,6 @@ class Solution {
         if(n==1)return 1;
         if(n==2)return 2;
         int bit=getMSB(n)+1;
-       // System.out.println(bit);
         int val=(int)Math.pow(2,bit);
         return val;
     }
