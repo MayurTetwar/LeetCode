@@ -11,7 +11,7 @@ class Solution {
         if(i==n-1)return arr[n-1];
         int res1=helper(arr,i+1);
         int res2=arr[i]-res1;
-        System.out.println(res1+" "+res2+" "+i);
+        // System.out.println(res1+" "+res2+" "+i);
         return Math.max(res1,res2);
     }
 }
