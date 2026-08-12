@@ -11,7 +11,6 @@ class Solution {
                 end=mid;
             }
         }
-        if(st==n)return arr[st-1];
         return arr[st];
     }
 }
