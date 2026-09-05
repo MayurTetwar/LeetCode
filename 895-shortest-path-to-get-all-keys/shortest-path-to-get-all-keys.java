@@ -29,7 +29,7 @@ class Solution {
 
         while(!pq.isEmpty()){
             int[] curr=pq.poll();
-        System.out.println(Arrays.toString(curr));
+        // System.out.println(Arrays.toString(curr));
             if(curr[2]==0)return curr[3];
             int i=curr[0];
             int j=curr[1];
