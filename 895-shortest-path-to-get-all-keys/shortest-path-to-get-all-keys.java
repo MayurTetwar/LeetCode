@@ -18,9 +18,7 @@ class Solution {
                 }
             }
         }
-        PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->{
-            return a[3]-b[3];
-        });
+        Queue<int[]> pq=new LinkedList<>();
         boolean[][][] visi=new boolean[n][m][mask+1];
         pq.add(new int[]{sti,stj,mask,0});
         visi[sti][stj][mask]=true;
