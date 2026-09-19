@@ -1,35 +1,18 @@
 class Solution {
-    int[][][] dp;
     public int maxProfit(int[] arr) {
-        int count=2;
         int n=arr.length;
-        dp=new int[n][count+1][2];
-        for(int i=0;i<n;i++){
-            for(int j=0;j<=count;j++){
-                for(int k=0;k<2;k++){
-                    dp[i][j][k]=-1;
-                }
-            }
+        int[] suff=new int[n];
+        int max=arr[n-1];
+        for(int i=n-2;i>=0;i--){
+            suff[i]=Math.max(suff[i+1],max-arr[i]);
+            max=Math.max(max,arr[i]);
         }
-        return helper(arr,0,count,1);
-    }
-    public int helper(int[] arr,int curr,int count,int sell){
-        if(curr>=arr.length)return 0;
-        if(dp[curr][count][sell]!=-1){
-            return dp[curr][count][sell];
+        int ans=0;
+        int min=arr[0];
+        for(int i=1;i<n;i++){
+            ans=Math.max(ans,arr[i]-min+suff[i]);
+            min=Math.min(min,arr[i]);
         }
-        if(count>0 && sell==1){
-            int val1=-arr[curr]+helper(arr,curr+1,count-1,0);
-            int val2=helper(arr,curr+1,count,1);
-            dp[curr][count][sell]=Math.max(val1,val2);
-            return dp[curr][count][sell];
-        }else if(sell==0){
-           int val1=arr[curr]+helper(arr,curr+1,count,1);
-            int val2=helper(arr,curr+1,count,0);
-            dp[curr][count][sell]=Math.max(val1,val2);
-            return dp[curr][count][sell];
-        }else{
-            return dp[curr][count][sell]=0;
-        }
+        return ans;
     }
 }
