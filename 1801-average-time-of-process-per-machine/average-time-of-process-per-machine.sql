@@ -1,10 +1,8 @@
--- Write your PostgreSQL query statement below
-select a1.machine_id,
-round(CAST(avg(a2.timestamp-a1.timestamp)AS numeric),3) as processing_time from 
-Activity a1 join Activity a2
-on a1.process_id = a2.process_id 
-and a1.machine_id = a2.machine_id 
-where a1.activity_type ='start' and 
-a2.activity_type ='end'
-group by a1.machine_id;
-
+# Write your MySQL query statement below
+select
+    machine_id,round(sum(case 
+        when activity_type='end' then timestamp
+        else -timestamp 
+    end)*2/count(process_id),3) as processing_time 
+from Activity
+group by machine_id;
