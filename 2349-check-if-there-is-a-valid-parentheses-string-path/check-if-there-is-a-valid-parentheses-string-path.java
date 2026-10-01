@@ -13,7 +13,7 @@ class Solution {
         if(arr[i][j]==')')count--;
         else count++;
         int rem=(n-1-i)+(m-1-j);
-        if(count<0){
+        if(count<0 || rem<count){
             return false;
         }
         if(n-1==i && m-1==j){
