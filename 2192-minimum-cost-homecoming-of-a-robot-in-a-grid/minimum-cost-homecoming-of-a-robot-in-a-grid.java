@@ -1,32 +1,24 @@
 class Solution {
-    public int minCost(int[] st, int[] home, int[] row, int[] col) {
-        int n=row.length;
-        int m=col.length;
-        int verticalSum=0;
-        if(st[0]!=home[0]){
-            if(st[0]<home[0]){
-                for(int i=st[0]+1;i<=home[0];i++){
-                    verticalSum+=row[i];
-                }
-            }else{
-                for(int i=st[0]-1;i>=home[0];i--){
-                    verticalSum+=row[i];
-                }
+    public int minCost(int[] startPos, int[] homePos, int[] rowCosts, int[] colCosts) {
+        int ans=0;
+        if(startPos[0]<homePos[0]){
+            for(int i=startPos[0]+1;i<=homePos[0];i++){
+                ans+=rowCosts[i];
+            }
+        }else{
+            for(int i=startPos[0]-1;i>=homePos[0];i--){
+                ans+=rowCosts[i];
             }
         }
-        int horizontalSum=0;
-        if(st[1]!=home[1]){
-            if(st[1]<home[1]){
-                for(int i=st[1]+1;i<=home[1];i++){
-                    horizontalSum+=col[i];
-                }
-            }else{
-                for(int i=st[1]-1;i>=home[1];i--){
-                    horizontalSum+=col[i];
-                }
+        if(startPos[1]<homePos[1]){
+            for(int i=startPos[1]+1;i<=homePos[1];i++){
+                ans+=colCosts[i];
+            }
+        }else{
+            for(int i=startPos[1]-1;i>=homePos[1];i--){
+                ans+=colCosts[i];
             }
         }
-       // System.out.println(horizontalSum+" "+verticalSum);
-        return verticalSum+horizontalSum;
+        return ans;
     }
 }
