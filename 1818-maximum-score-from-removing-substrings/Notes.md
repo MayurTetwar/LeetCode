@@ -1,1 +1,1 @@
-<h2>maximum-score-from-removing-substrings Notes</h2><hr>[ Time taken: 40 m 59 s ]
+<h2>maximum-score-from-removing-substrings Notes</h2><hr>[ Time taken: 25m 21s ]
