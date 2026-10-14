@@ -3,7 +3,9 @@ class Solution {
         StringBuilder sb=new StringBuilder();
         for(int i=0;i<num;i++){
             int curr=9;
-            while(curr>0 && sum-curr<0)curr--;
+            // while(curr>0 && sum-curr<0)curr--;
+            if(sum<curr)curr=sum;
+            
             sb.append(curr);
             sum-=curr;
         }
