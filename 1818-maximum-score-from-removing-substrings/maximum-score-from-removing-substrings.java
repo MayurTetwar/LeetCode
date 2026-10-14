@@ -1,44 +1,27 @@
 class Solution {
     public int maximumGain(String s, int x, int y) {
-        char ch1='a';
-        char ch2='b';
-        int max=x,min=y;
-        if(x<y){
-            char temp=ch1;
-            ch1=ch2;
-            ch2=temp;
-            max=y;
-            min=x;
-        }
-        int ans=0;
+        return Math.max(helper(s,x,y,'a','b'),helper(s,y,x,'b','a'));
+    }
+    public int helper(String s, int x, int y,char ch1,char ch2){
+        Stack<Integer> stk=new Stack<>();
         int n=s.length();
         boolean[] visi=new boolean[n];
-        for(int i=0;i<n-1;){
-            int j=i+1;
-            while(i>=0 && j<n && s.charAt(i)==ch1 && s.charAt(j)==ch2){
-                visi[i]=visi[j]=true;
-                //System.out.println(i+" "+j);
-                while(i>=0 && visi[i])i--;
-                j++;
-                ans+=max;
-            }
-            i=j;
+        int res1=0;
+        for(int i=0;i<n;i++){
+            if(!stk.isEmpty() && s.charAt(stk.peek())==ch1 && s.charAt(i)==ch2){
+                res1+=x;
+                visi[stk.pop()]=true;
+                visi[i]=true;
+            }else stk.push(i);
         }
-        StringBuilder sb=new StringBuilder();
-        for(int i=0;i<n;i++)if(!visi[i]){
-            sb.append(s.charAt(i));
+        stk=new Stack<>();
+        for(int i=0;i<n;i++){
+            if(visi[i])continue;
+            if(!stk.isEmpty() && s.charAt(stk.peek())==ch2 && s.charAt(i)==ch1){
+                res1+=y;
+                stk.pop();
+            }else stk.push(i);
         }
-        s=sb.toString();
-        n=s.length();
-        for(int i=0;i<n-1;){
-            int j=i+1;
-            while(i>=0 && j<n && s.charAt(i)==ch2 && s.charAt(j)==ch1){
-                i--;
-                j++;
-                ans+=min;
-            }
-            i=j;
-        }
-        return ans;
+        return res1;
     }
 }
