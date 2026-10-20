@@ -1,56 +1,51 @@
 class Solution {
     public int sortableIntegers(int[] arr) {
         int n=arr.length;
+
+        List<Integer> list=getDivisors(n);
+        // if(helper(arr,n,1)){
+        //     int ans=0;
+        //     for(int k:list){
+        //         ans+=k;
+        //     }
+        //     return ans;
+        // }
         int ans=0;
-        boolean flag=true;
-        for(int i=0;i<n-1;i++){
-            if(arr[i]>arr[i+1]){
-                flag=false;
-                break;
-            }
-        }
-        if(flag)ans++;
-        for(int i=2;i<=n;i++){
-            if(n%i==0){
-                if(helper(arr,i)){
-                    ans+=i;
-                }
+        for(int k:list){
+            if(helper(arr,n,k)){
+                ans+=k;
             }
         }
         return ans;
     }
-    public boolean helper(int[] a,int len){
-        int n=a.length;
-        int[] arr=a.clone();
-        for(int i=0;i<n;i+=len){
-            int minj=-1;
-            for(int j=i;j<i+len-1;j++){
-                if(arr[j]>arr[j+1]){
-                    minj=j+1;
-                    break;
-                }
+    public boolean helper(int[] arr,int n,int k){
+        int max=0;
+        for(int i=0;i<n;i+=k){
+            int count=0;
+            int min=arr[i+k-1];
+            int max2=arr[i+k-1];
+            if(arr[i+k-1]>arr[i])count++;
+            for(int j=i;j<i+k-1;j++){
+                if(arr[j]>arr[j+1])count++;
+                max2=Math.max(arr[j],max2);
+                min=Math.min(arr[j],min);
             }
-            if(minj==-1){
-                continue;
-            }
-            int prev=arr[minj];
-            for(int j=i;j<i+len-1;j++){
-                minj++;
-                if(minj==i+len){
-                    minj=i;
-                }
-                // System.out.println(prev+" "+arr[minj]);
-                if(prev>arr[minj]){
-                    return false;
-                }
-                prev=arr[minj];
-            }
-            Arrays.sort(arr,i,i+len);
-        }
-        // System.out.println(len);
-        for(int i=0;i<n-1;i++){
-            if(arr[i]>arr[i+1])return false;
+            if(count>1 || max>min)return false;
+            max=max2;
         }
         return true;
     }
+    public List<Integer> getDivisors(int x) {
+        List<Integer> divisors = new ArrayList<>();
+        for (int i = 1; i * i <= x; i++) {
+            if (x % i == 0) {
+                divisors.add(i);
+                if (i != x / i) {
+                    divisors.add(x / i);
+                }
+            }
+        }
+        return divisors;
+    }
+
 }
