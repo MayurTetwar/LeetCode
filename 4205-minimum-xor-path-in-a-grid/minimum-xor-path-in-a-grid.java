@@ -1,4 +1,6 @@
 class Solution {
+
+    // Hamesha sedha sochna bhi aacha nhi hota 
     int[][][] memo;
     public int minCost(int[][] arr) {
         int n=arr.length;
