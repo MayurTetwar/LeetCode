@@ -20,11 +20,11 @@ class Solution {
         while(!pq.isEmpty()){
             int[] curr=pq.poll();
             if(curr[0]==n-1)return curr[1];
+            if (curr[1] > dis[curr[0]][curr[2]]) continue; 
             for(int[] next:list.get(curr[0])){
                 int newk=curr[2];
                 if(s.charAt(curr[0])==s.charAt(next[0]))newk++;
                 else newk=1;
-                // System.out.println(curr[0]+" "+next[0]+" "+newk+" "+(s.charAt(curr[0])==s.charAt(next[0])));
                 if(newk<=k && curr[1]+next[1]<dis[next[0]][newk]){
                     dis[next[0]][newk]=curr[1]+next[1];
                     pq.add(new int[]{next[0],dis[next[0]][newk],newk});
